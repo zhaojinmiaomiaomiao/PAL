@@ -27,9 +27,16 @@ from utilts import *
 from torch.autograd import Variable
 import math
 
+def access_model(choose_model):
+    choose_model_dir_name = choose_model + '_no_sigmoid'
+    model_function = choose_model + '_No_Sigmoid'
+    module_name = f"model.{choose_model}.{choose_model_dir_name}"
+    module = importlib.import_module(module_name)
+    model_func = getattr(module, model_function)
+    return model_func
 
 ##############################################
-choose_model = 'MSDA'   ##choose model in [ACM, ALC, MLCL, ALCL, DNA, GGL, UIU, MSDA]
+choose_model = 'MSDA'   ##choose model in [ACM, ALC, MLCL, ALCL, DNA, GGL, UIU, MSDA, AGPCNet, ISNet, SCTransNet, HDNet, SFDTNet]
 model_func = access_model(choose_model)
 choose_dataset = 'SIRST3'  ## choose dataset in [SIRST3, IRSTD_1K_point, NUDT_SIRST_1_1_point, SIRST_1_1_point_new]
 choose_dataset_type = 'masks_coarse' ## choose dataset_type in [mask, masks_coarse, masks_centroid]   "mask": "Full supervision"; "masks_centroid": "Centroid point supervision"; "mask_coarse": "Coarse point supervision"
@@ -115,6 +122,19 @@ def PadImg(image, times=32):
     return image
 
 def test_pred(img, net, batch_size = TEST_PATCH_BATCH_SIZE, choose_model = choose_model):
+
+    ori_h, ori_w = img.shape[-2:]
+    # SFDTNet 内部 FDSA / FeedForward 使用 patch_size=8，
+    # 且 decoder4 处大约是输入尺寸的 1/8，
+    # 因此输入图像高宽需要 pad 到 64 的倍数。
+    if choose_model == 'SFDTNet':
+        times = 64
+        pad_h = math.ceil(ori_h / times) * times - ori_h
+        pad_w = math.ceil(ori_w / times) * times - ori_w
+
+        if pad_h > 0 or pad_w > 0:
+            img = F.pad(img, (0, pad_w, 0, pad_h), mode='constant', value=0)
+
     b, c, h, w = img.shape
     #print(img.shape)
     patch_size = PATCH_SIZE_test
@@ -133,10 +153,22 @@ def test_pred(img, net, batch_size = TEST_PATCH_BATCH_SIZE, choose_model = choos
             batch_patches = img_unfold[:, i:end, :, :, :].reshape(-1, c, patch_size, patch_size)
             batch_patches = Variable(batch_patches.float())
             batch_preds = net.forward(batch_patches)
+            if choose_model == 'HDNet':
+                _, batch_pred = net.forward(batch_patches)
+                preds_list.append(batch_pred)
+                continue
             if choose_model == 'DNA':
                 preds_list.append(batch_preds[-1])
             elif choose_model == 'UIU':
                 preds_list.append(batch_preds[0])
+            elif choose_model == 'ISNet':
+                preds_list.append(batch_preds[0])
+            elif choose_model == 'SCTransNet':
+                preds_list.append(batch_preds[-1])
+            elif choose_model == 'HDNet':
+                preds_list.append(batch_preds[-1])
+            elif choose_model == 'SFDTNet':
+                preds_list.append(batch_preds[-1])
             else:
                 preds_list.append(batch_preds)
 
@@ -150,8 +182,18 @@ def test_pred(img, net, batch_size = TEST_PATCH_BATCH_SIZE, choose_model = choos
             preds = preds[-1]
         elif choose_model == 'UIU':
             preds = preds[0]
-        else:
-            pass
+        elif choose_model == 'ISNet':
+            preds = preds[0]
+        elif choose_model == 'SCTransNet':
+            preds = preds[-1]
+        elif choose_model == 'HDNet':
+            preds = preds[-1]
+        elif choose_model == 'SFDTNet':
+            # SFDTNet 可能返回 list、tuple，也可能直接返回 Tensor
+            if isinstance(preds, (list, tuple)):
+                preds = preds[-1]
+            # 去除 SFDTNet 内部填充区域，恢复到原始尺寸
+            preds = preds[:, :, :ori_h, :ori_w]
     return preds
 
 
@@ -225,6 +267,111 @@ def main():
                     loss_6 = loss_fn(predictions_no_sigmoid[6], targets, edge)
                     loss = torch.mean(loss_0 + loss_1 + loss_2 + loss_3 + loss_4 + loss_5 + loss_6)
                 predictions = torch.sigmoid(predictions_no_sigmoid[0])
+
+            elif choose_model == 'ISNet':
+                with torch.cuda.amp.autocast():
+                    predictions_no_sigmoid = model(data) # 考虑到ISNet
+                    loss_out = loss_fn(predictions_no_sigmoid[0], targets, edge)
+                    # edge_gt = gradmask(edge.float())
+                    # loss_edge = loss_fn(predictions_no_sigmoid[1], edge_gt, edge_gt.squeeze(1))
+                    loss = loss_out
+                predictions = torch.sigmoid(predictions_no_sigmoid[0])
+
+            elif choose_model == 'SCTransNet':
+                with torch.cuda.amp.autocast():
+                    predictions_no_sigmoid = model(data)
+                    loss_gt5 = loss_fn(predictions_no_sigmoid[0], targets, edge)
+                    loss_gt4 = loss_fn(predictions_no_sigmoid[1], targets, edge)
+                    loss_gt3 = loss_fn(predictions_no_sigmoid[2], targets, edge)
+                    loss_gt2 = loss_fn(predictions_no_sigmoid[3], targets, edge)
+                    loss_d0 = loss_fn(predictions_no_sigmoid[4], targets, edge)
+                    loss_out = loss_fn(predictions_no_sigmoid[5], targets, edge)
+                    loss = torch.mean(loss_gt5 + loss_gt4 + loss_gt3 + loss_gt2 + loss_d0 + loss_out)
+                predictions = torch.sigmoid(predictions_no_sigmoid[-1])
+
+            elif choose_model == 'HDNet':
+                # HDNet warm 分支包含 torch.fft / DHPF，不能放在 AMP 半精度里跑
+                with torch.cuda.amp.autocast(enabled=False):
+                    warm_flag = epoch > 5
+                    data_f = data.float()
+                    targets_f = targets.float()
+                    edge_f = edge.float()
+                    side_masks, pred_no_sigmoid = model(data_f, warm_flag)
+                    # 主输出 loss，pred_no_sigmoid 是 logits，不要 sigmoid
+                    loss = loss_fn(pred_no_sigmoid, targets_f, edge_f)
+                    # warm_flag=False 时 side_masks=[]
+                    # warm_flag=True 时 side_masks=[mask0, mask1, mask2, mask3]
+                    if side_masks is not None and len(side_masks) > 0:
+                        targets_ds = targets_f
+                        edge_ds = edge_f
+                        for j, side_pred in enumerate(side_masks):
+                            if side_pred is None:
+                                continue
+                            if j > 0:
+                                targets_ds = F.max_pool2d(
+                                    targets_ds.float(),
+                                    kernel_size=2,
+                                    stride=2
+                                )
+                                if edge_ds.dim() == 4:
+                                    edge_ds = F.max_pool2d(
+                                        edge_ds.float(),
+                                        kernel_size=2,
+                                        stride=2
+                                    )
+                                else:
+                                    edge_ds = F.max_pool2d(
+                                        edge_ds.float().unsqueeze(1),
+                                        kernel_size=2,
+                                        stride=2
+                                    ).squeeze(1)
+                            loss = loss + loss_fn(side_pred, targets_ds, edge_ds)
+                        loss = loss / (len(side_masks) + 1)
+                predictions = torch.sigmoid(pred_no_sigmoid)
+
+            elif choose_model == 'SFDTNet':
+                with torch.cuda.amp.autocast():
+                    outputs = model(data)
+                    # deep_supervision=True, mode='train' 时:
+                    # outputs = (gt_4, gt_3, gt_2, gt_1, out)
+                    if isinstance(outputs, (list, tuple)):
+                        pred_no_sigmoid = outputs[-1]  # 最终融合输出 out
+                        side_outputs = outputs[:-1]  # gt_4, gt_3, gt_2, gt_1, output
+                    else:
+                        pred_no_sigmoid = outputs
+                        side_outputs = []
+                    # 主输出损失，仍然使用 PAL 框架里的 edgeSCE_loss
+                    loss = loss_fn(pred_no_sigmoid, targets, edge)
+                    # 深监督辅助输出损失
+                    if side_outputs is not None and len(side_outputs) > 0:
+                        for side_pred in side_outputs:
+                            if side_pred is None:
+                                continue
+                            if side_pred.shape[-2:] != targets.shape[-2:]:
+                                targets_ds = F.interpolate(
+                                    targets.float(),
+                                    size=side_pred.shape[-2:],
+                                    mode='nearest'
+                                )
+
+                                if edge.dim() == 4:
+                                    edge_ds = F.interpolate(
+                                        edge.float(),
+                                        size=side_pred.shape[-2:],
+                                        mode='nearest'
+                                    )
+                                else:
+                                    edge_ds = F.interpolate(
+                                        edge.float().unsqueeze(1),
+                                        size=side_pred.shape[-2:],
+                                        mode='nearest'
+                                    ).squeeze(1)
+                            else:
+                                targets_ds = targets
+                                edge_ds = edge
+                            loss = loss + loss_fn(side_pred, targets_ds, edge_ds)
+                        loss = loss / (len(side_outputs) + 1)
+                predictions = torch.sigmoid(pred_no_sigmoid)
 
             else:
                 with torch.cuda.amp.autocast():
@@ -327,7 +474,7 @@ def main():
         ],
     )
 
-    if choose_model == 'DNA' or choose_model == 'UIU':
+    if choose_model == 'DNA' or choose_model == 'UIU' or choose_model == 'SCTransNet' or choose_model == 'SFDTNet':
         model = model_func(mode='train').to(DEVICE)
     else:
         model = model_func().to(DEVICE)

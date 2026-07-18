@@ -22,6 +22,7 @@ import math
 from components.cal_mean_std import Calculate_mean_std
 from utilts import access_model
 
+
 def read_txt(txt_path):
     with open(txt_path, 'r') as file:
         lines = file.readlines()
@@ -35,7 +36,7 @@ def make_dir(path):
 
 
 ##############################################
-choose_model = 'MSDA'   ##choose model in [ACM, ALC, MLCL, ALCL, DNA, GGL, UIU, MSDA]
+choose_model = 'MSDA'  ##choose model in [ACM, ALC, MLCL, ALCL, DNA, GGL, UIU, MSDA, AGPCNet, ISNet, SCTransNet, HDNet, SFDTNet]
 model_func = access_model(choose_model)
 choose_dataset = 'SIRST3'  ## choose dataset in [SIRST3, IRSTD_1K_point, NUDT_SIRST_1_1_point, SIRST_1_1_point_new]
 test_dir_name = '********'  ## Replace with the folder name where the corresponding test model is located, such as 'MSDA__SIRST3__masks_coarse__2024-12-13_13-30-35'.  Since the timestamps are unique, you need the folder name you generated.
@@ -53,8 +54,8 @@ LOAD_MODEL = False
 patch_size_test = 1024
 TEST_PATCH_BATCH_SIZE = 32
 root_path = os.path.abspath('.')
-dataset_path = os.path.join(root_path,'dataset', choose_dataset)
-test_dataset_path = os.path.join(dataset_path,'val')
+dataset_path = os.path.join(root_path, 'dataset', choose_dataset)
+test_dataset_path = os.path.join(dataset_path, 'val')
 input_path = os.path.join(test_dataset_path, 'img')
 output_path = os.path.join(test_dataset_path, 'pre_results')
 make_dir(output_path)
@@ -62,9 +63,22 @@ make_dir(output_path)
 # txt_path = os.path.join(root_path, 'img_idx', 'test.txt')
 img_list = os.listdir(input_path)
 
-test_model_path = os.path.join(root_path,'work_dirs',test_dir_name,test_model_name)
+test_model_path = os.path.join(root_path, 'work_dirs', test_dir_name, test_model_name)
+
 
 def test_pred(img, net, batch_size, patch_size):
+    # SFDTNet 内部 FDSA / FeedForward 使用 patch_size=8，
+    # 且 decoder4 处大约是输入尺寸的 1/8，
+    # 因此输入图像高宽需要 pad 到 64 的倍数。
+    ori_h, ori_w = img.shape[-2:]
+    if choose_model == 'SFDTNet':
+        times = 64
+        pad_h = math.ceil(ori_h / times) * times - ori_h
+        pad_w = math.ceil(ori_w / times) * times - ori_w
+
+        if pad_h > 0 or pad_w > 0:
+            img = F.pad(img, (0, pad_w, 0, pad_h), mode='constant', value=0)
+
     b, c, h, w = img.shape
     # print(img.shape)
     patch_size = patch_size
@@ -82,14 +96,47 @@ def test_pred(img, net, batch_size, patch_size):
             end = min(i + batch_size, patch_num)
             batch_patches = img_unfold[:, i:end, :, :, :].reshape(-1, c, patch_size, patch_size)
             batch_patches = Variable(batch_patches.float())
+            if choose_model == 'HDNet':
+                _, batch_pred = net.forward(batch_patches)
+                preds_list.append(batch_pred)
+                continue
             batch_preds = net.forward(batch_patches)
-            preds_list.append(batch_preds)
+            if choose_model == 'DNA':
+                preds_list.append(batch_preds[-1])
+            elif choose_model == 'UIU':
+                preds_list.append(batch_preds[0])
+            elif choose_model == 'ISNet':
+                preds_list.append(batch_preds[0])
+            elif choose_model == 'SCTransNet':
+                preds_list.append(batch_preds[-1])
+            elif choose_model == 'HDNet':
+                preds_list.append(batch_preds[-1])
+            elif choose_model == 'SFDTNet':
+                preds_list.append(batch_preds[-1])
+            else:
+                preds_list.append(batch_preds)
         # Concatenate all the patch predictions
         preds_unfold = torch.cat(preds_list, dim=0).permute(1, 2, 3, 0)
         preds_unfold = preds_unfold.reshape(b, -1, patch_num)
         preds = F.fold(preds_unfold, kernel_size=patch_size, stride=stride, output_size=(h, w))
     else:
         preds = net.forward(img)
+        if choose_model == 'DNA':
+            preds = preds[-1]
+        elif choose_model == 'UIU':
+            preds = preds[0]
+        elif choose_model == 'ISNet':
+            preds = preds[0]
+        elif choose_model == 'SCTransNet':
+            preds = preds[-1]
+        elif choose_model == 'HDNet':
+            preds = preds[-1]
+        elif choose_model == 'SFDTNet':
+            # SFDTNet 可能返回 list、tuple，也可能直接返回 Tensor
+            if isinstance(preds, (list, tuple)):
+                preds = preds[-1]
+            # 去除 SFDTNet 内部填充区域，恢复到原始尺寸
+            preds = preds[:, :, :ori_h, :ori_w]
 
     return preds
 
@@ -153,7 +200,11 @@ def main():
         pin_memory=PIN_MEMORY,
         shuffle=False,
     )
-    model = model_func().to(DEVICE)
+
+    if choose_model == 'DNA' or choose_model == 'UIU' or choose_model == 'SCTransNet':
+        model = model_func(mode='train').to(DEVICE)
+    else:
+        model = model_func().to(DEVICE)
 
     model.load_state_dict({k.replace('module.', ''): v for k, v in
                            torch.load(test_model_path, map_location=DEVICE)[
