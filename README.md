@@ -16,8 +16,8 @@
     <sup>1</sup> Shenyang Institute of Automation, Chinese Academy of Sciences
      <br>
     <sup>2</sup> University of Chinese Academy of Sciences &nbsp;&nbsp;
+     <br>
     <sup>3</sup> Tsinghua University &nbsp;&nbsp;
-    <br>
     <sup>4</sup> Nankai University &nbsp;&nbsp;
     <sup>5</sup> MMLab, The Chinese University of Hong Kong
   </p>
