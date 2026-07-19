@@ -51,11 +51,11 @@ Comparison of different methods on the SIRST3 dataset. <i>CNN Full</i>, <i>CNN C
 
 ## 🔥 News 
 -2026.07 🌸🌸 We will **continue to support** more networks and **welcome pull requests** for integrating new methods into our project.  
--2026.07 🌸🌸 We have adapted five methods (AGPCNet, HDNet, ISNet, SCTransNet, SFDTNet) in the **PAL framework**.   
--2026.02 🌟🌟 We have created a [WeChat group](https://github.com/YuChuang1205/PAL/blob/main/README_EN_WeChat.md) for PAL discussion, support, and extension. 
+-2026.07 🌸🌸 We have adapted five methods (**AGPCNet**, **HDNet**, **ISNet**, **SCTransNet**, **SFDTNet**) in the **PAL framework**.   
+-2026.02 🌟🌟 We have created a **[WeChat group](https://github.com/YuChuang1205/PAL/blob/main/README_EN_WeChat.md)** for PAL discussion, support, and extension.   
 -2025.12 🌟🌟 We have updated the paper (**PAL**) version on arXiv.  
 -2025.06 🎉🎉 The paper (**PAL**) have been accepted by **ICCV 2025**.  
--2025.03 🌟🌟 We have released the **Complete Code**, supporting the following networks: ACM, ALCNet, MLCL-Net, ALCL-Net, DNANet, GGL-Net, UIUNet, and MSDA-Net.  
+-2025.03 🌟🌟 We have released the **Complete Code**, supporting the following networks: [**ACM**](https://arxiv.org/abs/2009.14530), [**ALCNet**](https://arxiv.org/abs/2012.08573), [**MLCL-Net**](https://doi.org/10.1016/j.infrared.2022.104107), [**ALCL-Net**](https://ieeexplore.ieee.org/document/9785618), [**DNANet**](https://arxiv.org/abs/2106.00487), [**GGL-Net**](https://ieeexplore.ieee.org/abstract/document/10230271), [**UIUNet**](https://arxiv.org/abs/2212.00968), [**MSDA-Net**](https://arxiv.org/abs/2406.02037).  
 -2024.12 🌟🌟 We have released the **PAL manuscript**. 
 
 
