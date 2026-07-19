@@ -1,12 +1,45 @@
-## The official complete code for paper "From Easy to Hard: Progressive Active Learning Framework for Infrared Small Target Detection with Single Point Supervision" [[Paper](https://openaccess.thecvf.com/content/ICCV2025/html/Yu_From_Easy_to_Hard_Progressive_Active_Learning_Framework_for_Infrared_ICCV_2025_paper.html)] [[知乎](https://zhuanlan.zhihu.com/p/1924197990941302819)]  [[YouTube](https://youtu.be/C7FUAGd0c6Q)] [[微信交流群](https://github.com/YuChuang1205/PAL/blob/main/README_EN_WeChat.md)] [Accepted by ICCV2025]
-
-<!--
 <div align="center">
-In this project demo, we have integrated multiple SIRST detection networks (ACM, ALC, MLCL-Net, ALCL-Net, DNANet, GGL-Net, UIUNet, MSDA-Net), label forms (Full supervision, Coarse single-point supervision, Centroid single-point supervision), and datasets (SIRST, NUDT, IRSTD-1K and SIRST3). At the same time, more networks and functions can be integrated into the project later. We hope we can contribute to the development of this field.
-</div><br>
--->
+  <h1 style="border-bottom: none;">From Easy to Hard: Progressive Active Learning Framework for Infrared Small Target Detection with Single Point Supervision</h1>
+</div>
 
-In this project demo, we have integrated multiple SIRST detection networks ([**ACM**](https://arxiv.org/abs/2009.14530), [**ALCNet**](https://arxiv.org/abs/2012.08573), [**MLCL-Net**](https://doi.org/10.1016/j.infrared.2022.104107), [**ALCL-Net**](https://ieeexplore.ieee.org/document/9785618), [**DNANet**](https://arxiv.org/abs/2106.00487), [**GGL-Net**](https://ieeexplore.ieee.org/abstract/document/10230271), [**UIUNet**](https://arxiv.org/abs/2212.00968), [**MSDA-Net**](https://arxiv.org/abs/2406.02037)), label forms (**Full supervision**, **Coarse single-point supervision**, **Centroid single-point supervision**), and datasets ([**SIRST**](https://ieeexplore.ieee.org/document/9423171), [**NUDT-SIRST**](https://ieeexplore.ieee.org/document/9864119), [**IRSTD-1k**](https://ieeexplore.ieee.org/document/9880295) and [**SIRST3**](https://arxiv.org/pdf/2304.01484)). At the same time, more networks and functions can be integrated into the project later. We hope we can contribute to the development of this field.
+<div align="center">
+  <p>
+    <a href="https://yuchuang1205.github.io/" target="_blank">Chuang Yu</a><sup>1,2,5</sup>,&nbsp
+    <a href="https://scholar.google.com/citations?user=3cBa6r4AAAAJ&hl=zh-CN" target="_blank">Jinmiao Zhao</a><sup>1,2</sup>,&nbsp
+    <a>Yunpeng Liu</a><sup>1*</sup>,&nbsp
+    <a href="https://scholar.google.com/citations?user=LJiQRJIAAAAJ&hl=zh-CN" target="_blank">Sicheng Zhao</a><sup>3</sup>,
+    <br>
+    <a href="https://scholar.google.com/citations?user=y5Ov6VAAAAAJ&hl=zh-CN&oi=ao" target="_blank">Yimian Dai</a><sup>4</sup>,&nbsp
+    <a href="https://scholar.google.com/citations?user=-xQ-C1sAAAAJ&hl=zh-CN" target="_blank">Xiangyu Yue</a><sup>5*</sup>
+  </p>
+  <p>
+    <sup>1</sup> Shenyang Institute of Automation, Chinese Academy of Sciences
+     <br>
+    <sup>2</sup> University of Chinese Academy of Sciences &nbsp;&nbsp;
+     <br>
+    <sup>3</sup> Tsinghua University &nbsp;&nbsp;
+    <sup>4</sup> Nankai University &nbsp;&nbsp;
+    <sup>5</sup> MMLab, The Chinese University of Hong Kong
+  </p>
+  
+</div>
+<p align="center">
+  <a href="https://arxiv.org/abs/2412.11154"><img src="https://img.shields.io/static/v1?label=Arxiv&message=2412.11154&color=green&logo=arxiv"></a>
+  <a href="https://yuchuang1205.github.io/"><img src="https://img.shields.io/badge/Homepage-YuChuang1205-red.svg"></a>
+  <!-- <a href="#"><img src="https://img.shields.io/badge/License-MIT-5865F2.svg"></a> -->
+  <!-- <a href="https://opensource.org/licenses/Apache-2.0"><img src="https://img.shields.io/badge/License-Apache%202.0-5865F2.svg"></a> -->
+  <a href="#"><img src="https://img.shields.io/badge/License-Apache%202.0-5865F2.svg"></a>
+  <a href="https://openaccess.thecvf.com/content/ICCV2025/html/Yu_From_Easy_to_Hard_Progressive_Active_Learning_Framework_for_Infrared_ICCV_2025_paper.html"><img src="https://img.shields.io/badge/ICCV-2025-blue.svg"></a>
+</p>
+<p align="center">
+  <a href="https://zhuanlan.zhihu.com/p/1924197990941302819">知乎</a>
+  &nbsp;&nbsp;
+  <a href="https://youtu.be/C7FUAGd0c6Q">YouTube</a>
+  &nbsp;&nbsp;
+  <a href="https://github.com/YuChuang1205/PAL/blob/main/README_EN_WeChat.md">微信交流群</a>
+</p>
+
+In this project demo, we have integrated multiple SIRST detection networks ([**ACM**](https://arxiv.org/abs/2009.14530), [**ALCNet**](https://arxiv.org/abs/2012.08573), [**MLCL-Net**](https://doi.org/10.1016/j.infrared.2022.104107), [**ALCL-Net**](https://ieeexplore.ieee.org/document/9785618), [**DNANet**](https://arxiv.org/abs/2106.00487), [**GGL-Net**](https://ieeexplore.ieee.org/abstract/document/10230271), [**UIUNet**](https://arxiv.org/abs/2212.00968), [**MSDA-Net**](https://arxiv.org/abs/2406.02037), . . . ), label forms (**Full supervision**, **Coarse single-point supervision**, **Centroid single-point supervision**), and datasets ([**SIRST**](https://ieeexplore.ieee.org/document/9423171), [**NUDT-SIRST**](https://ieeexplore.ieee.org/document/9864119), [**IRSTD-1k**](https://ieeexplore.ieee.org/document/9880295) and [**SIRST3**](https://arxiv.org/pdf/2304.01484)). At the same time, more networks and functions can be integrated into the project later. We hope we can contribute to the development of this field. **We welcome everyone to integrate their networks into our project via pull request to build a collaborative ecosystem.** (欢迎大家将自己的网络以 pull request 集成到我们的项目中)
 
 <p align="center">
   <img src="imgs/Main results.png" alt="Main results" width="600"/></br>
@@ -16,6 +49,28 @@ In this project demo, we have integrated multiple SIRST detection networks ([**A
 Comparison of different methods on the SIRST3 dataset. <i>CNN Full</i>, <i>CNN Coarse</i>, and <i>CNN Centroid</i> denote CNN-based methods under full supervision, coarse and centroid point supervision.
 </div><br>
 
+## 🔥 News 
+-2026.07 🌸🌸 We **continue to support** more networks and **welcome pull requests** for integrating your networks.  
+-2026.07 🌸🌸 We have adapted five more methods (**AGPCNet**, **HDNet**, **ISNet**, **SCTransNet**, **SFDTNet**).   
+-2026.02 🌟🌟 We have created a **[WeChat group](https://github.com/YuChuang1205/PAL/blob/main/README_EN_WeChat.md)** for PAL discussion, support, and extension.   
+-2025.12 🌟🌟 We have updated the paper (**PAL**) version on arXiv.  
+-2025.06 🎉🎉 The paper (**PAL**) have been accepted by **ICCV 2025**.  
+-2025.03 🌟🌟 We have released the **Complete Code**, supporting many networks ([**ACM**](https://arxiv.org/abs/2009.14530), [**ALCNet**](https://arxiv.org/abs/2012.08573), [**MLCL-Net**](https://doi.org/10.1016/j.infrared.2022.104107), [**ALCL-Net**](https://ieeexplore.ieee.org/document/9785618), [**DNANet**](https://arxiv.org/abs/2106.00487), [**GGL-Net**](https://ieeexplore.ieee.org/abstract/document/10230271), [**UIUNet**](https://arxiv.org/abs/2212.00968), [**MSDA-Net**](https://arxiv.org/abs/2406.02037)), three label forms (**Full supervision**, **Coarse single-point supervision**, **Centroid single-point supervision**), and many datasets ([**SIRST**](https://ieeexplore.ieee.org/document/9423171), [**NUDT-SIRST**](https://ieeexplore.ieee.org/document/9864119), [**IRSTD-1k**](https://ieeexplore.ieee.org/document/9880295) and [**SIRST3**](https://arxiv.org/pdf/2304.01484)).  
+-2024.12 🌟🌟 We have released the **PAL manuscript**. 
+
+
+<!--## The official complete code for paper "From Easy to Hard: Progressive Active Learning Framework for Infrared Small Target Detection with Single Point Supervision" [[Paper](https://openaccess.thecvf.com/content/ICCV2025/html/Yu_From_Easy_to_Hard_Progressive_Active_Learning_Framework_for_Infrared_ICCV_2025_paper.html)] [[知乎](https://zhuanlan.zhihu.com/p/1924197990941302819)]  [[YouTube](https://youtu.be/C7FUAGd0c6Q)] [[微信交流群](https://github.com/YuChuang1205/PAL/blob/main/README_EN_WeChat.md)] [Accepted by ICCV2025]-->
+
+<!--
+<div align="center">
+In this project demo, we have integrated multiple SIRST detection networks (ACM, ALC, MLCL-Net, ALCL-Net, DNANet, GGL-Net, UIUNet, MSDA-Net), label forms (Full supervision, Coarse single-point supervision, Centroid single-point supervision), and datasets (SIRST, NUDT, IRSTD-1K and SIRST3). At the same time, more networks and functions can be integrated into the project later. We hope we can contribute to the development of this field.
+</div><br>
+-->
+
+<!--In this project demo, we have integrated multiple SIRST detection networks ([**ACM**](https://arxiv.org/abs/2009.14530), [**ALCNet**](https://arxiv.org/abs/2012.08573), [**MLCL-Net**](https://doi.org/10.1016/j.infrared.2022.104107), [**ALCL-Net**](https://ieeexplore.ieee.org/document/9785618), [**DNANet**](https://arxiv.org/abs/2106.00487), [**GGL-Net**](https://ieeexplore.ieee.org/abstract/document/10230271), [**UIUNet**](https://arxiv.org/abs/2212.00968), [**MSDA-Net**](https://arxiv.org/abs/2406.02037)), label forms (**Full supervision**, **Coarse single-point supervision**, **Centroid single-point supervision**), and datasets ([**SIRST**](https://ieeexplore.ieee.org/document/9423171), [**NUDT-SIRST**](https://ieeexplore.ieee.org/document/9864119), [**IRSTD-1k**](https://ieeexplore.ieee.org/document/9880295) and [**SIRST3**](https://arxiv.org/pdf/2304.01484)). At the same time, more networks and functions can be integrated into the project later. We hope we can contribute to the development of this field.-->
+
+
+
 
 <!--
 <div align="center">
@@ -23,13 +78,14 @@ Comparison of different methods on the SIRST3 dataset. <i>CNN Full</i>, <i>CNN C
 </div><br>
 -->
 
-## Overview
+## 🚀 Overview
 
 We consider that an excellent learning process should be from easy to hard and take into account the learning ability of the current learner (model) rather than directly treating all tasks (samples) equally. Inspired by organisms gradually adapting to the environment and continuously accumulating knowledge, we first propose an innovative progressive active learning idea, which emphasizes that the network progressively and actively recognizes and learns more hard samples to achieve continuous performance enhancement. For details, please see [[Paper](https://openaccess.thecvf.com/content/ICCV2025/html/Yu_From_Easy_to_Hard_Progressive_Active_Learning_Framework_for_Infrared_ICCV_2025_paper.html)].
    
 <p align="center">
   <img src="imgs/PAL framework.png" alt="PAL framework" width="800"/></br>
 </p>
+
 
 
 ## Datasets
@@ -140,6 +196,11 @@ word reference is as follows.
 ```
 Chuang Yu, Jinmiao Zhao, Yunpeng Liu, Sicheng Zhao, Yimian Dai, Xiangyu Yue. From Easy to Hard: Progressive Active Learning Framework for Infrared Small Target Detection with Single Point Supervision. In Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV), pp. 2588--2598, 2025.
 ```
+## 💥 Poster 
+<p align="center">
+  <img src="imgs/ICCV-PAL-poster.png" alt="Main results" width="1000"/></br>
+</p> 
+
 ## 微信交流群（2026-02-21）
 🚑🚑 为了方便解决大家在使用以及扩展本PAL开源框架中存在的问题，我建立了一个微信群聊，如下：(**若二维码过期，可以在github的问题区留言，我将及时更新~~~**)
 
@@ -148,6 +209,7 @@ Chuang Yu, Jinmiao Zhao, Yunpeng Liu, Sicheng Zhao, Yimian Dai, Xiangyu Yue. Fro
 </p> 
 
 ## Other link
+
 
 1. My homepage: [[YuChuang](https://github.com/YuChuang1205)]
 2. "MSDA-Net" demo (TGRS2025): [[Link](https://github.com/YuChuang1205/MSDA-Net)]
