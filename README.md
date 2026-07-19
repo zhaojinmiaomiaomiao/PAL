@@ -50,11 +50,12 @@ Comparison of different methods on the SIRST3 dataset. <i>CNN Full</i>, <i>CNN C
 </div><br>
 
 ## 🔥 News 
--2026.07 🌸🌸 We have adapted more methods in the **PAL framework**. We will continue to adapt to more networks, so stay tuned!    
--2026.02 🌟🌟 To facilitate communication and resolve issues encountered during the use and expansion of the PAL framework, we have created a [WeChat group](https://github.com/YuChuang1205/PAL/blob/main/README_EN_WeChat.md).  
+-2026.07 🌸🌸 We will **continue to support** more networks and **welcome pull requests** for integrating new methods into our project.  
+-2026.07 🌸🌸 We have adapted five methods (AGPCNet, HDNet, ISNet, SCTransNet, SFDTNet) in the **PAL framework**.   
+-2026.02 🌟🌟 We have created a [WeChat group](https://github.com/YuChuang1205/PAL/blob/main/README_EN_WeChat.md) for PAL discussion, support, and extension. 
 -2025.12 🌟🌟 We have updated the paper (**PAL**) version on arXiv.  
 -2025.06 🎉🎉 The paper (**PAL**) have been accepted by **ICCV 2025**.  
--2025.03 🌟🌟 We have released the **Complete Code**.  
+-2025.03 🌟🌟 We have released the **Complete Code**, supporting the following networks: ACM, ALCNet, MLCL-Net, ALCL-Net, DNANet, GGL-Net, UIUNet, and MSDA-Net.  
 -2024.12 🌟🌟 We have released the **PAL manuscript**. 
 
 
