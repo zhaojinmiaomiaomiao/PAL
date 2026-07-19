@@ -21,6 +21,7 @@
     <sup>4</sup> Nankai University &nbsp;&nbsp;
     <sup>5</sup> MMLab, The Chinese University of Hong Kong
   </p>
+  
 </div>
 <p align="center">
   <a href="https://arxiv.org/abs/2412.11154"><img src="https://img.shields.io/static/v1?label=Arxiv&message=2412.11154&color=green&logo=arxiv"></a>
@@ -29,6 +30,14 @@
   <!-- <a href="https://opensource.org/licenses/Apache-2.0"><img src="https://img.shields.io/badge/License-Apache%202.0-5865F2.svg"></a> -->
   <a href="#"><img src="https://img.shields.io/badge/License-Apache%202.0-5865F2.svg"></a>
   <a href="https://www.python.org/downloads/"><img src="https://img.shields.io/badge/python-3.8+-blue.svg"></a>
+</p>
+
+<p align="center">
+  <a href="https://zhuanlan.zhihu.com/p/1924197990941302819">知乎</a>
+  &nbsp;&nbsp;
+  <a href="https://youtu.be/C7FUAGd0c6Q">YouTube</a>
+  &nbsp;&nbsp;
+  <a href="https://github.com/YuChuang1205/PAL/blob/main/README_EN_WeChat.md">微信交流群</a>
 </p>
 
 ## [[知乎](https://zhuanlan.zhihu.com/p/1924197990941302819)]  [[YouTube](https://youtu.be/C7FUAGd0c6Q)] [[微信交流群](https://github.com/YuChuang1205/PAL/blob/main/README_EN_WeChat.md)]
