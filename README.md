@@ -31,8 +31,6 @@
   <a href="#"><img src="https://img.shields.io/badge/License-Apache%202.0-5865F2.svg"></a>
   <a href="https://www.python.org/downloads/"><img src="https://img.shields.io/badge/python-3.8+-blue.svg"></a>
 </p>
-
-
 <p align="center">
   <a href="https://zhuanlan.zhihu.com/p/1924197990941302819">知乎</a>
   &nbsp;&nbsp;
@@ -43,6 +41,7 @@
 
 ## 🔥 News 
 -2026.07 🌸🌸 We have adapted more methods in the **PAL framework**. We will continue to adapt to more networks, so stay tuned!    
+-2026.02 🌟🌟 To facilitate communication and resolve issues encountered during the use and expansion of the PAL framework, we have created a [WeChat group](https://github.com/YuChuang1205/PAL/blob/main/README_EN_WeChat.md).  
 -2025.12 🌟🌟 We have updated the paper (**PAL**) version on arivx.  
 -2025.06 🎉🎉 The paper (**PAL**) have been accepted by **ICCV 2025**.  
 -2025.03 🌟🌟 We have released the **Complete Code**.  
