@@ -29,17 +29,22 @@
   <!-- <a href="#"><img src="https://img.shields.io/badge/License-MIT-5865F2.svg"></a> -->
   <!-- <a href="https://opensource.org/licenses/Apache-2.0"><img src="https://img.shields.io/badge/License-Apache%202.0-5865F2.svg"></a> -->
   <a href="#"><img src="https://img.shields.io/badge/License-Apache%202.0-5865F2.svg"></a>
-  <a href="https://openaccess.thecvf.com/content/ICCV2025/html/Yu_From_Easy_to_Hard_Progressive_Active_Learning_Framework_for_Infrared_ICCV_2025_paper.html"><img src="https://img.shields.io/badge/ICCV-2025-blue.svg"></a>
-</p>
-<p align="center">
-  <a href="https://zhuanlan.zhihu.com/p/1924197990941302819">**知乎**</a>
-  &nbsp;&nbsp;
-  <a href="https://youtu.be/C7FUAGd0c6Q">**YouTube**</a>
-  &nbsp;&nbsp;
-  <a href="https://github.com/YuChuang1205/PAL/blob/main/README_EN_WeChat.md">**微信交流群**</a>
+  <a href="#"><img src="https://img.shields.io/badge/python-3.8+-blue.svg"></a>
 </p>
 
-In this project demo, we have integrated multiple SIRST detection networks ([**ACM**](https://arxiv.org/abs/2009.14530), [**ALCNet**](https://arxiv.org/abs/2012.08573), [**MLCL-Net**](https://doi.org/10.1016/j.infrared.2022.104107), [**ALCL-Net**](https://ieeexplore.ieee.org/document/9785618), [**DNANet**](https://arxiv.org/abs/2106.00487), [**GGL-Net**](https://ieeexplore.ieee.org/abstract/document/10230271), [**UIUNet**](https://arxiv.org/abs/2212.00968), [**MSDA-Net**](https://arxiv.org/abs/2406.02037), . . . ), label forms (**Full supervision**, **Coarse single-point supervision**, **Centroid single-point supervision**), and datasets ([**SIRST**](https://ieeexplore.ieee.org/document/9423171), [**NUDT-SIRST**](https://ieeexplore.ieee.org/document/9864119), [**IRSTD-1k**](https://ieeexplore.ieee.org/document/9880295) and [**SIRST3**](https://arxiv.org/pdf/2304.01484)). At the same time, more networks and functions can be integrated into the project later. We hope we can contribute to the development of this field. **We welcome everyone to integrate their networks into our project via pull request to build a collaborative ecosystem.** (欢迎大家将自己的网络以 pull request 集成到我们的项目中)
+<p align="center">
+  <a href="https://openaccess.thecvf.com/content/ICCV2025/html/Yu_From_Easy_to_Hard_Progressive_Active_Learning_Framework_for_Infrared_ICCV_2025_paper.html"><strong>Accepted by ICCV2025</strong></a>
+</p>
+
+<p align="center">
+  <a href="https://zhuanlan.zhihu.com/p/1924197990941302819"><strong>知乎</strong></a>
+  &nbsp;&nbsp;
+  <a href="https://youtu.be/C7FUAGd0c6Q"><strong>YouTube</strong></a>
+  &nbsp;&nbsp;
+  <a href="https://github.com/YuChuang1205/PAL/blob/main/README_EN_WeChat.md"><strong>微信交流群</strong></a>
+</p>
+
+In this project demo, we have integrated More than ten SIRST detection networks ([**ACM**](https://arxiv.org/abs/2009.14530), [**ALCNet**](https://arxiv.org/abs/2012.08573), [**MLCL-Net**](https://doi.org/10.1016/j.infrared.2022.104107), [**ALCL-Net**](https://ieeexplore.ieee.org/document/9785618), [**DNANet**](https://arxiv.org/abs/2106.00487), [**GGL-Net**](https://ieeexplore.ieee.org/abstract/document/10230271), [**UIUNet**](https://arxiv.org/abs/2212.00968), [**MSDA-Net**](https://arxiv.org/abs/2406.02037), . . . ), label forms (**Full supervision**, **Coarse single-point supervision**, **Centroid single-point supervision**), and datasets ([**SIRST**](https://ieeexplore.ieee.org/document/9423171), [**NUDT-SIRST**](https://ieeexplore.ieee.org/document/9864119), [**IRSTD-1k**](https://ieeexplore.ieee.org/document/9880295) and [**SIRST3**](https://arxiv.org/pdf/2304.01484)). At the same time, more networks and functions can be integrated into the project later. We hope we can contribute to the development of this field. **We welcome everyone to integrate their networks into our project via pull request to build a collaborative ecosystem.** (欢迎大家将自己的网络以 pull request 集成到我们的项目中)
 
 <p align="center">
   <img src="imgs/Main results.png" alt="Main results" width="600"/></br>
