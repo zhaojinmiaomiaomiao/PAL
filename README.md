@@ -1,3 +1,46 @@
+<div align="center">
+  <h1 style="border-bottom: none;">From Easy to Hard: Progressive Active Learning Framework for Infrared Small Target Detection with Single Point Supervision</h1>
+</div>
+
+<div align="center">
+  <p>
+    <a href="https://yuchuang1205.github.io/" target="_blank">Chuang Yu</a><sup>1,2,5</sup>,&nbsp
+    <a href="https://scholar.google.com/citations?user=3cBa6r4AAAAJ&hl=zh-CN" target="_blank">Jinmiao Zhao</a><sup>1,2</sup>,&nbsp
+    <a>Yunpeng Liu</a><sup>1*</sup>,&nbsp
+    <a href="https://scholar.google.com/citations?user=LJiQRJIAAAAJ&hl=zh-CN" target="_blank">Sicheng Zhao</a><sup>3</sup>,
+    <br>
+    <a href="https://scholar.google.com/citations?user=y5Ov6VAAAAAJ&hl=zh-CN&oi=ao" target="_blank">Yimian Dai</a><sup>4</sup>,&nbsp
+    <a href="https://scholar.google.com/citations?user=-xQ-C1sAAAAJ&hl=zh-CN" target="_blank">Xiangyu Yue</a><sup>5*</sup>
+  </p>
+  <p>
+    <sup>1</sup> Shenyang Institute of Automation, Chinese Academy of Sciences
+     <br>
+    <sup>2</sup> University of Chinese Academy of Sciences &nbsp;&nbsp;
+    <sup>3</sup> Tsinghua University &nbsp;&nbsp;
+    <br>
+    <sup>4</sup> Nankai University &nbsp;&nbsp;
+    <sup>5</sup> MMLab, The Chinese University of Hong Kong
+  </p>
+</div>
+<p align="center">
+  <a href="https://arxiv.org/abs/2412.11154"><img src="https://img.shields.io/static/v1?label=Arxiv&message=2412.11154&color=green&logo=arxiv"></a>
+  <a href="https://yuchuang1205.github.io/"><img src="https://img.shields.io/badge/Homepage-YuChuang1205-red.svg"></a>
+  <!-- <a href="#"><img src="https://img.shields.io/badge/License-MIT-5865F2.svg"></a> -->
+  <!-- <a href="https://opensource.org/licenses/Apache-2.0"><img src="https://img.shields.io/badge/License-Apache%202.0-5865F2.svg"></a> -->
+  <a href="#"><img src="https://img.shields.io/badge/License-Apache%202.0-5865F2.svg"></a>
+  <a href="https://www.python.org/downloads/"><img src="https://img.shields.io/badge/python-3.8+-blue.svg"></a>
+</p>
+
+## [[知乎](https://zhuanlan.zhihu.com/p/1924197990941302819)]  [[YouTube](https://youtu.be/C7FUAGd0c6Q)] [[微信交流群](https://github.com/YuChuang1205/PAL/blob/main/README_EN_WeChat.md)]
+
+## 🔥 News 
+-2026.07 🌸🌸 We have adapted more methods in the **PAL framework**.  
+-2025.12 🌟🌟 We have updated the paper (**PAL**) version on arivx.  
+-2025.06 🎉🎉 The paper (**PAL**) have been accepted by **ICCV 2025**.  
+-2025.03 🌟🌟 We have released the **Complete Code**.  
+-2024.12 🌟🌟 We have released the **PAL manuscript**. 
+
+
 ## The official complete code for paper "From Easy to Hard: Progressive Active Learning Framework for Infrared Small Target Detection with Single Point Supervision" [[Paper](https://openaccess.thecvf.com/content/ICCV2025/html/Yu_From_Easy_to_Hard_Progressive_Active_Learning_Framework_for_Infrared_ICCV_2025_paper.html)] [[知乎](https://zhuanlan.zhihu.com/p/1924197990941302819)]  [[YouTube](https://youtu.be/C7FUAGd0c6Q)] [[微信交流群](https://github.com/YuChuang1205/PAL/blob/main/README_EN_WeChat.md)] [Accepted by ICCV2025]
 
 <!--
