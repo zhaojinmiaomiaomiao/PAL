@@ -60,7 +60,7 @@ Comparison of different methods on the SIRST3 dataset. <i>CNN Full</i>, <i>CNN C
 -2026.02 🌟🌟 We have created a **[WeChat group](https://github.com/YuChuang1205/PAL/blob/main/README_EN_WeChat.md)** for PAL discussion, support, and extension.   
 -2025.12 🌟🌟 We have updated the paper (**PAL**) version on arXiv.  
 -2025.06 🎉🎉 The paper (**PAL**) have been accepted by **ICCV 2025**.  
--2025.03 🌟🌟 项目支持**全监督学习训练**和**点监督学习训练**，**多种网络和数据集更改一个参数即可切换训练和测试！**   
+-2025.03 🌟🌟 项目支持**全监督学习训练**和**点监督学习训练**，**多种网络和数据集更改一个参数即可切换训练！**   
 -2025.03 🌟🌟 We have released the **Complete Code**, supporting many networks ([**ACM**](https://arxiv.org/abs/2009.14530), [**ALCNet**](https://arxiv.org/abs/2012.08573), [**MLCL-Net**](https://doi.org/10.1016/j.infrared.2022.104107), [**ALCL-Net**](https://ieeexplore.ieee.org/document/9785618), [**DNANet**](https://arxiv.org/abs/2106.00487), [**GGL-Net**](https://ieeexplore.ieee.org/abstract/document/10230271), [**UIUNet**](https://arxiv.org/abs/2212.00968), [**MSDA-Net**](https://arxiv.org/abs/2406.02037)), three label forms (**Full supervision**, **Coarse single-point supervision**, **Centroid single-point supervision**), and many datasets ([**SIRST**](https://ieeexplore.ieee.org/document/9423171), [**NUDT-SIRST**](https://ieeexplore.ieee.org/document/9864119), [**IRSTD-1k**](https://ieeexplore.ieee.org/document/9880295) and [**SIRST3**](https://arxiv.org/pdf/2304.01484)).  
 -2024.12 🌟🌟 We have released the **PAL manuscript**. 
 
